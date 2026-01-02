@@ -1,500 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Trou aux Biches Guide | Hacienda Luxury Stay</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2a5f7f;
-            --secondary: #e8c07d;
-            --accent: #25D366;
-            --dark: #1a2e3b;
-            --light: #f8f5f0;
-            --white: #ffffff;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            line-height: 1.7;
-            background-color: var(--light);
-            scroll-behavior: smooth;
-        }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--dark);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        header.scrolled {
-            background: var(--primary);
-            box-shadow: 0 3px 15px rgba(0,0,0,0.3);
-        }
-        header.scrolled .logo {
-            color: var(--white);
-        }
-        header.scrolled .nav-links a {
-            color: #ddd;
-        }
-        header.scrolled .nav-links a:hover {
-            color: var(--white);
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
-            transition: color 0.3s ease;
-        }
-        .nav-links a {
-            margin-left: 30px;
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('beach-hero.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding-top: 80px;
-            position: relative;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards 0.5s;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .cta-button {
-            display: inline-block;
-            background: var(--secondary);
-            color: var(--dark);
-            padding: 15px 30px;
-            margin-top: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: all 0.3s;
-            box-shadow: 0 6px 12px rgba(232,192,125,0.4);
-        }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(232,192,125,0.7);
-        }
-        
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--secondary);
-        }
-        
-        /* Activity Grid */
-        .activity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        .activity-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .activity-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .activity-img {
-            height: 250px;
-            width: 100%;
-            object-fit: cover;
-        }
-        .activity-content {
-            padding: 20px;
-        }
-        .activity-content h3 {
-            margin-bottom: 10px;
-        }
-        
-        /* WhatsApp Button */
-        .whatsapp-button {
-            display: inline-flex;
-            align-items: center;
-            background: var(--accent);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 4px;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: all 0.3s;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(37,211,102,0.4);
-        }
-        .whatsapp-button:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(18,140,126,0.6);
-        }
-        .whatsapp-icon {
-            margin-right: 10px;
-            width: 20px;
-        }
-        
-        /* Gallery Section */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        
-        /* Contact Section */
-        .contact-box {
-            background: white;
-            color: var(--dark);
-            padding: 40px;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .contact-box h3 {
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        .phone-link {
-            color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        .phone-link:hover {
-            color: var(--secondary);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .activity-grid, .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links a {
-                margin-left: 15px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Services Mauritius | Fair Prices & Trusted Experts</title>
+  <meta name="description" content="All-in-one professional services across Mauritius. Fair market prices, genuine technicians, island-wide coverage. WhatsApp +23059237053" />
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --secondary: #1aa3a3;
+      --dark: #1b1b1b;
+      --light: #f7f9fc;
+      --gray: #666;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 40px 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav h1 {
+      font-size: 26px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 60px auto 20px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .cta {
+      margin-top: 30px;
+    }
+
+    .cta a {
+      background: #25d366;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    section h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section p {
+      color: var(--gray);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card h4 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .why {
+      background: white;
+      padding: 80px 20px;
+    }
+
+    .why ul {
+      max-width: 800px;
+      margin: auto;
+      list-style: none;
+    }
+
+    .why li {
+      background: var(--light);
+      margin-bottom: 15px;
+      padding: 20px;
+      border-left: 6px solid var(--secondary);
+    }
+
+    .founders {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .founder {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      color: #ccc;
+    }
+
+    @media(max-width: 768px) {
+      .hero h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header id="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">HACIENDA TROU AUX BICHES</div>
-                <nav class="nav-links">
-                    <a href="#activities">Activities</a>
-                    <a href="#gallery">Gallery</a>
-                    <a href="#beaches">Beaches</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Discover Trou aux Biches</h1>
-            <p>Your exclusive guide to unforgettable experiences in Mauritius' most beautiful coastal village</p>
-            <a href="#activities" class="cta-button">Explore Activities</a>
-        </div>
-    </section>
+<header>
+  <nav>
+    <h1>Professional Services Mauritius</h1>
+    <div>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#founders">Founders</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <section id="activities" class="container">
-        <div class="section-title">
-            <h2>Endless Things To Do</h2>
-            <p>From sunrise to sunset, adventure awaits at every turn</p>
-        </div>
-        <div class="activity-grid">
-            <div class="activity-card">
-                <img src="image/scooter.jpg" alt="Underwater subscooter" class="activity-img">
-                <div class="activity-content">
-                    <h3>Subscooter Adventure</h3>
-                    <p>Explore coral gardens 3m underwater without getting wet. Perfect for non-swimmers!</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
+  <div class="hero">
+    <h2>Fair Prices. Genuine Professionals. Island‑Wide Service.</h2>
+    <p>
+      One trusted platform connecting Mauritian households and businesses with verified professionals.
+      No fake technicians. No exaggerated prices. Only quality work at real market rates.
+    </p>
+    <div class="cta">
+      <a href="https://wa.me/23059237053">Contact on WhatsApp</a>
+    </div>
+  </div>
+</header>
 
-            <div class="activity-card">
-                <img src="image/caption.jpg" alt="Sunset catamaran" class="activity-img">
-                <div class="activity-content">
-                    <h3>Private Catamaran Charter</h3>
-                    <p>Sunset cruise to Coin de Mire with snorkeling and Creole BBQ dinner</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
+<section id="services">
+  <h3>Our Services</h3>
+  <p>All professionals are verified and available to move anywhere across Mauritius.</p>
 
-            <div class="activity-card">
-                <img src="image/golf.jpg" alt="Golf course" class="activity-img">
-                <div class="activity-content">
-                    <h3>Mont Choisy Golf</h3>
-                    <p>Priority access to Mauritius' premier 18-hole championship course</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
-
-            <div class="activity-card">
-                <img src="image/fishing.jpg" alt="Snorkeling with turtles" class="activity-img">
-                <div class="activity-content">
-                    <h3>Turtle Snorkeling</h3>
-                    <p>Guided tour to swim with sea turtles in their natural habitat</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
-
-            <div class="activity-card">
-                <img src="image/scuba.jpg" alt="Scuba diving" class="activity-img">
-                <div class="activity-content">
-                    <h3>Scuba Diving</h3>
-                    <p>Discover Mauritius' underwater wonders with certified instructors</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
-
-            <div class="activity-card">
-                <img src="image/spa.jpg" alt="Luxury spa" class="activity-img">
-                <div class="activity-content">
-                    <h3>Spa</h3>
-                    <p>Rejuvenating treatments with ocean views using local ingredients</p>
-                    <a href="https://wa.me/23059237053" class="whatsapp-button">
-                        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Contact Wassim
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="container">
-        <div class="section-title">
-            <h2>Gallery</h2>
-            <p>Capturing the essence of Hacienda Trou aux Biches</p>
-        </div>
-        <div class="gallery-grid">
-            <img src="image/feroz1.jpg" alt="Entrance of Hacienda Residence">
-            <img src="image/feroz2.jpg" alt="Beach view near Hacienda">
-            <img src="image/feroz3.jpg" alt="Luxury room interior">
-            <img src="image/feroz4.jpg" alt="Pool area with lounge chairs">
-            <img src="image/feroz5.jpg" alt="Sunset over the ocean">
-            <img src="image/feroz6.jpg" alt="Elegant dining area">
-            <img src="image/feroz7.jpg" alt="Lush garden at Hacienda">
-            <img src="image/feroz8.jpg" alt="Balcony view">
-            <img src="image/feroz10.jpg" alt="Ocean view from terrace">
-            <img src="image/feroz11.jpg" alt="Comfortable lounge area">
-            <img src="image/feroz12.jpg" alt="Modern bathroom">
-            <img src="image/feroz13.jpg" alt="Spacious terrace">
-            <img src="image/feroz14.jpg" alt="Breakfast served">
-            <img src="image/feroz15.jpg" alt="Night view with lighting">
-            <img src="image/feroz16.jpg" alt="Relaxing spa area">
-            <img src="image/feroz17.jpg" alt="Walkway surrounded by greenery">
-        </div>
-    </section>
-
-    <section id="beaches" class="container">
-        <div class="section-title">
-            <h2>Pristine Beaches</h2>
-            <p>Discover the most breathtaking stretches of sand in Mauritius</p>
-        </div>
-        <div class="activity-grid">
-            <div class="activity-card">
-                <img src="image/beach2.jpg" alt="Trou aux Biches Beach" class="activity-img">
-                <div class="activity-content">
-                    <h3>Trou aux Biches Beach</h3>
-                    <p>2km of powdery white sand with calm, shallow waters perfect for swimming</p>
-                </div>
-            </div>
-            <div class="activity-card">
-                <img src="image/choisy.jpg" alt="Mont Choisy Beach" class="activity-img">
-                <div class="activity-content">
-                    <h3>Mont Choisy Beach</h3>
-                    <p>Palm-fringed shoreline with excellent snorkeling just minutes away</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<section id="contact" style="padding: 2rem; background-color: #f9f9f9; max-width: 600px; margin: 50px auto; border-radius: 8px; font-family: Arial, sans-serif;">
-  <h2 style="text-align: center; color: #333;">Contact Me</h2>
-  <p style="text-align: center; color: #555;">Feel free to reach out to me via WhatsApp!</p>
-  
-  <div style="text-align: center; margin-top: 1rem;">
-    <a href="https://wa.me/23059237053?text=Hi%2C%20I%27m%20interested%20to%20book." target="_blank" 
-       style="display: inline-block; background-color: #25D366; color: white; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; font-size: 1.1rem;">
-      📱 Chat on WhatsApp: +230 59 237 053
-    </a>
+  <div class="grid">
+    <div class="card"><h4>Housekeepers</h4><p>Reliable and trained home assistance.</p></div>
+    <div class="card"><h4>Cleaners</h4><p>Home, office, and deep cleaning services.</p></div>
+    <div class="card"><h4>Mechanics</h4><p>Mobile vehicle repair and diagnostics.</p></div>
+    <div class="card"><h4>Technicians</h4><p>Electrical, installation, and technical support.</p></div>
+    <div class="card"><h4>Plumbers</h4><p>Fast and professional plumbing solutions.</p></div>
+    <div class="card"><h4>Taxi Drivers</h4><p>Safe, reliable transport across the island.</p></div>
   </div>
 </section>
-    
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Hacienda Trou aux Biches</h3>
-                <p>Luxury beachfront residence offering an unforgettable Mauritian experience with premium amenities and personalized service.</p>
-                <p>Royal Road, Trou aux Biches, Mauritius</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="#activities">Activities</a>
-                <a href="#gallery">Photo Gallery</a>
-                <a href="#beaches">Nearby Beaches</a>
-                <a href="#contact">Contact Us</a>
-            </div>
-            <div class="footer-column">
-                <h3>Amenities</h3>
-                <p>Beach Access</p>
-                <p>Heated Pool</p>
 
-                <p>Free Excellent WiFi</p>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Info</h3>
-                <p>Phone: +230 59 237 053</p>
-                <p>Email: realtyemamdinwassim@gmail.com</p>
-                <p>WhatsApp: +230 59 237 053</p>
-                
-                </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hacienda Trou aux Biches. All Rights Reserved.</p>
-        </div>
-    </footer>
+<section id="why" class="why">
+  <h3>Why Choose Us</h3>
+  <p>We are changing the service industry in Mauritius.</p>
+
+  <ul>
+    <li><strong>Market‑Fair Pricing:</strong> We follow real market prices with full transparency.</li>
+    <li><strong>No Fake Technicians:</strong> We eliminate dishonest and unqualified service providers.</li>
+    <li><strong>All‑in‑One Platform:</strong> Every essential service under one trusted name.</li>
+    <li><strong>Island‑Wide Coverage:</strong> Available everywhere in Mauritius.</li>
+  </ul>
+</section>
+
+<section id="founders">
+  <h3>Our Story & Vision</h3>
+  <p>
+    This platform was created by two brothers with one clear mission:
+    every Mauritian deserves professional services at a fair price.
+  </p>
+
+  <div class="founders">
+    <div class="founder">
+      <h4>Wassim Emamdin</h4>
+      <p>Co‑Founder</p>
+      <p>Committed to transparency, quality, and customer protection.</p>
+    </div>
+    <div class="founder">
+      <h4>Javed Emamdin</h4>
+      <p>Co‑Founder</p>
+      <p>Focused on building trust and raising service standards in Mauritius.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h3>Contact Us</h3>
+  <p>
+    Need a professional today? Contact us directly on WhatsApp and we’ll assign a trusted expert.
+  </p>
+  <div class="cta" style="text-align:center;">
+    <a href="https://wa.me/23059237053">WhatsApp +230 5923 7053</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Professional Services Mauritius</p>
+  <p>Honest Pricing • Trusted Professionals • Island‑Wide Coverage</p>
+</footer>
 
 </body>
 </html>
